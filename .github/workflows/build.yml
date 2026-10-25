@@ -23,11 +23,12 @@ jobs:
 
     - name: Configurar Gradle
       uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: '8.4'
 
     - name: Compilar APK
       run: |
         cd $(dirname $(find android_project -name "settings.gradle" | head -n 1))
-        chmod +x ./gradlew || true
         gradle assembleDebug --no-daemon
 
     - name: Subir APK Terminado
